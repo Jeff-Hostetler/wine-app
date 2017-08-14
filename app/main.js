@@ -8260,10 +8260,76 @@ var _elm_lang$html$Html_Events$Options = F2(
 		return {stopPropagation: a, preventDefault: b};
 	});
 
+var _user$project$Main$Wine = F2(
+	function (a, b) {
+		return {id: a, name: b};
+	});
+var _user$project$Main$initialWines = {
+	ctor: '::',
+	_0: A2(_user$project$Main$Wine, 1, 'White'),
+	_1: {
+		ctor: '::',
+		_0: A2(_user$project$Main$Wine, 2, 'Red'),
+		_1: {ctor: '[]'}
+	}
+};
+var _user$project$Main$Food = F2(
+	function (a, b) {
+		return {id: a, name: b};
+	});
+var _user$project$Main$initialFoods = {
+	ctor: '::',
+	_0: A2(_user$project$Main$Food, 1, 'Meat'),
+	_1: {
+		ctor: '::',
+		_0: A2(_user$project$Main$Food, 2, 'Veg'),
+		_1: {ctor: '[]'}
+	}
+};
+var _user$project$Main$initialModel = {wines: _user$project$Main$initialWines, foods: _user$project$Main$initialFoods};
+var _user$project$Main$update = F2(
+	function (msg, model) {
+		var _p0 = msg;
+		if (_p0.ctor === 'ChooseWine') {
+			return _elm_lang$core$Native_Utils.update(
+				model,
+				{
+					foods: A2(
+						_elm_lang$core$List$filter,
+						function (f) {
+							return _elm_lang$core$Native_Utils.eq(f.id, _p0._0.id);
+						},
+						_user$project$Main$initialFoods)
+				});
+		} else {
+			return _elm_lang$core$Native_Utils.update(
+				model,
+				{
+					wines: A2(
+						_elm_lang$core$List$filter,
+						function (w) {
+							return _elm_lang$core$Native_Utils.eq(w.id, _p0._0.id);
+						},
+						_user$project$Main$initialWines)
+				});
+		}
+	});
+var _user$project$Main$Model = F2(
+	function (a, b) {
+		return {wines: a, foods: b};
+	});
+var _user$project$Main$ChooseFood = function (a) {
+	return {ctor: 'ChooseFood', _0: a};
+};
 var _user$project$Main$displayFood = function (food) {
 	return A2(
 		_elm_lang$html$Html$li,
-		{ctor: '[]'},
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html_Events$onClick(
+				_user$project$Main$ChooseFood(food)),
+			_1: {ctor: '[]'}
+		},
 		{
 			ctor: '::',
 			_0: _elm_lang$html$Html$text(food.name),
@@ -8294,10 +8360,18 @@ var _user$project$Main$displayFoods = function (foods) {
 			}
 		});
 };
+var _user$project$Main$ChooseWine = function (a) {
+	return {ctor: 'ChooseWine', _0: a};
+};
 var _user$project$Main$displayWine = function (wine) {
 	return A2(
 		_elm_lang$html$Html$li,
-		{ctor: '[]'},
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html_Events$onClick(
+				_user$project$Main$ChooseWine(wine)),
+			_1: {ctor: '[]'}
+		},
 		{
 			ctor: '::',
 			_0: _elm_lang$html$Html$text(wine.name),
@@ -8353,73 +8427,8 @@ var _user$project$Main$view = function (model) {
 			}
 		});
 };
-var _user$project$Main$update = F2(
-	function (msg, model) {
-		var _p0 = msg;
-		if (_p0.ctor === 'ChooseWine') {
-			return _elm_lang$core$Native_Utils.update(
-				model,
-				{
-					foods: A2(
-						_elm_lang$core$List$filter,
-						function (f) {
-							return _elm_lang$core$Native_Utils.eq(f.id, _p0._0.id);
-						},
-						model.foods)
-				});
-		} else {
-			return _elm_lang$core$Native_Utils.update(
-				model,
-				{
-					wines: A2(
-						_elm_lang$core$List$filter,
-						function (w) {
-							return _elm_lang$core$Native_Utils.eq(w.id, _p0._0.id);
-						},
-						model.wines)
-				});
-		}
-	});
-var _user$project$Main$Wine = F2(
-	function (a, b) {
-		return {id: a, name: b};
-	});
-var _user$project$Main$Food = F2(
-	function (a, b) {
-		return {id: a, name: b};
-	});
-var _user$project$Main$initialModel = {
-	wines: {
-		ctor: '::',
-		_0: A2(_user$project$Main$Wine, 1, 'White'),
-		_1: {
-			ctor: '::',
-			_0: A2(_user$project$Main$Wine, 2, 'Red'),
-			_1: {ctor: '[]'}
-		}
-	},
-	foods: {
-		ctor: '::',
-		_0: A2(_user$project$Main$Food, 1, 'Meat'),
-		_1: {
-			ctor: '::',
-			_0: A2(_user$project$Main$Food, 2, 'Veg'),
-			_1: {ctor: '[]'}
-		}
-	}
-};
 var _user$project$Main$main = _elm_lang$html$Html$beginnerProgram(
 	{model: _user$project$Main$initialModel, view: _user$project$Main$view, update: _user$project$Main$update})();
-var _user$project$Main$Model = F2(
-	function (a, b) {
-		return {wines: a, foods: b};
-	});
-var _user$project$Main$ChooseFood = function (a) {
-	return {ctor: 'ChooseFood', _0: a};
-};
-var _user$project$Main$ChooseWine = function (a) {
-	return {ctor: 'ChooseWine', _0: a};
-};
 
 var Elm = {};
 Elm['Main'] = Elm['Main'] || {};
