@@ -9,7 +9,7 @@ import Html.Events exposing (onClick)
 
 
 type alias Wine =
-    { id : Int, name : String }
+    { id : Int, wineType : String, name : String }
 
 
 type alias Food =
@@ -22,12 +22,26 @@ type alias Model =
 
 initialWines : List Wine
 initialWines =
-    [ Wine 1 "White"
-    , Wine 2 "Red"
+    [ Wine 1 "White" "Chardonnay"
+    , Wine 2 "White" "Reisling"
+    , Wine 3 "White" "Chenin Blanc"
+    , Wine 4 "White" "Pinot Gris"
+    , Wine 5 "White" "Pinot Blanc"
+    , Wine 6 "White" "Gruner Vetliner"
+    , Wine 7 "White" "Semillon"
+    , Wine 8 "White" "Bubbles"
+    , Wine 9 "Red" "Cabernet"
+    , Wine 10 "Red" "Cab Franc"
+    , Wine 11 "Red" "Syrah"
+    , Wine 12 "Red" "Merlot"
+    , Wine 13 "Red" "Tempernillo"
+    , Wine 14 "Red" "Malbec"
+    , Wine 15 "Red" "Pinot Noir"
+    , Wine 16 "Red" "Port"
     ]
 
 
-initialFoods : List Wine
+initialFoods : List Food
 initialFoods =
     [ Food 1 "Meat"
     , Food 2 "Veg"
@@ -66,36 +80,46 @@ update msg model =
 
 displayWine : Wine -> Html Msg
 displayWine wine =
-    li [ onClick (ChooseWine wine) ] [ text wine.name ]
+    div [ class "col-md-1", onClick (ChooseWine wine) ] [ text wine.name ]
 
 
 displayWines : List Wine -> Html Msg
 displayWines wines =
     div []
-        [ h2 [] [ text "Wines" ]
-        , ul [] (List.map displayWine wines)
+        [ h2 [ class "text-center" ] [ text "Wines" ]
+        , h3 [] [ text "Whites" ]
+        , div [ class "row" ] (List.map displayWine (List.filter (\n -> n.wineType == "White") wines))
+        , h3 [] [ text "Reds" ]
+        , div [ class "row" ] (List.map displayWine (List.filter (\n -> n.wineType == "Red") wines))
         ]
 
 
 displayFood : Food -> Html Msg
 displayFood food =
-    li [ onClick (ChooseFood food) ] [ text food.name ]
+    div [ class "col-md-1", onClick (ChooseFood food) ] [ text food.name ]
 
 
 displayFoods : List Food -> Html Msg
 displayFoods foods =
     div []
-        [ h2 [] [ text "Foods" ]
-        , ul [] (List.map displayFood foods)
+        [ h2 [ class "text-center" ] [ text "Foods" ]
+        , div [ class "row" ] (List.map displayFood foods)
         ]
 
 
 view : Model -> Html Msg
 view model =
     div []
-        [ h1 [] [ text "Pairing Lab" ]
-        , displayWines model.wines
-        , displayFoods model.foods
+        [ div [ class "nav-bar" ]
+            [ h1 [] [ text "Pairing Lab" ]
+            ]
+        , div [ class "container container-sup" ]
+            [ div [ class "top-border" ] []
+            , p [ class "lead" ] [ text "An intelligent way to pair food and wine. This interactive and comprehensive approach allows anyone and everyone to pair the perfect wine." ]
+            , hr [] []
+            , displayWines model.wines
+            , displayFoods model.foods
+            ]
         ]
 
 
