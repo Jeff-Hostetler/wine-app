@@ -3,7 +3,7 @@
 #For Jeff
  - To run, go to app/ and run
  ```
- elm-live main.elm --open --output=main.js
+ elm-live main.elm --open --debug --output=main.js
  ```
 
  - To format run

@@ -24,7 +24,7 @@ body{
     color: #EECFD4;
 }
 
-hr {
+.hot {
     display: block;
     height: 1px;
     border: 0;
@@ -35,4 +35,12 @@ hr {
 
 .top-border {
     padding-bottom: 120px;
+}
+
+.hoverable:hover {
+    transform: scale(1.1);
+    color: #D30C7B;
+    cursor: pointer;
+    cursor: hand;
+
 }
