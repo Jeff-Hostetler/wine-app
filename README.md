@@ -1,9 +1,9 @@
 # A Wine Pairing App
-
-#For Jeff
- - To run, go to app/ and run
+on github pages at https://jeff-hostetler.github.io/wine-app/ -- (May not be up to date)
+# For Jeff
+ - To run from root
  ```
- elm-live main.elm --open --debug --output=main.js
+ elm-live app/main.elm --open --debug --output=main.js
  ```
 
  - To format run
