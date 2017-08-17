@@ -171,7 +171,7 @@ displayWineCategory title wines =
 
 displayWine : Wine -> Html Msg
 displayWine wine =
-    div [ class "col-md-4 hoverable", onClick (ChooseWine wine) ] [ text wine.name ]
+    div [ class "col-md-3 hoverable", onClick (ChooseWine wine) ] [ text wine.name ]
 
 
 displayFoods : List Food -> Html Msg
@@ -192,7 +192,7 @@ displayFoods foods =
 
 displayFood : Food -> Html Msg
 displayFood food =
-    div [ class "col-md-4 hoverable", onClick (ChooseFood food) ] [ text food.name ]
+    div [ class "col-md-3 hoverable", onClick (ChooseFood food) ] [ text food.name ]
 
 
 view : Model -> Html Msg
@@ -203,18 +203,19 @@ view model =
             ]
         , div [ class "container container-sup" ]
             [ div [ class "top-border" ] []
-            , div [ class "jumbotron" ]
-                [ h2 [] [ text "Welcome to the Pairing Lab" ]
-                , p [ class "lead" ] [ text "An intelligent way to pair food and wine. This interactive and comprehensive approach allows anyone and everyone to pair the perfect wine." ]
-                ]
-            , p [ class "lead" ] [ text "To get going, just select the food you are planning to eat to get wines that pair. Alternatively, filter out matching foods by the bottle you have." ]
+            ,p [ class "lead" ] [ text
+            """
+            An intelligent way to pair food and wine.
+            This interactive and comprehensive approach allows anyone and everyone to pair the perfect wine.
+            To get going, just select the food you are planning to eat to get wines that pair. Alternatively, filter out matching foods by the bottle you have.
+            """ ]
             , displaySelected model.selected
             , hr [ class "hot" ] []
             , displayWines model.wines
             , hr [] []
             , displayFoods model.foods
             , hr [ class "hot" ] []
-            , button [ class "btn btn-default btn-lg btn-block", onClick ResetModel ] [ text "Reset" ]
+            , button [ class "btn btn-primary btn-lg btn-block", onClick ResetModel ] [ text "Reset" ]
             ]
         ]
 
